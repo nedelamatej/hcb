@@ -1,6 +1,8 @@
 <script>
   import Map from './Map1.svelte';
 
+  export let page
+
   let value = 'plasty';
   let details = {};
   let objem = false;
@@ -13,6 +15,25 @@
 <div class='box'>
   <div class='box-title'>Třídění odpadu České Budějovice</div>
   <div class='box-team'>BROS | BRno OStrava</div>
+
+  <div class="switch">
+    <div
+        class="switch__card"
+        on:click={() => {
+            page = "trashAccessibility";
+        }}
+    >
+        Dostupnost odpadů
+    </div>
+    <div
+        class="switch__card active"
+        on:click={() => {
+            page = "trashOverview";
+        }}
+    >
+        Přehled odpadů
+    </div>
+</div>
   
   <div class='box-plasty' on:click={() => { value = 'plasty' }}
     class:selected="{value === 'plasty'}">Plasty</div>

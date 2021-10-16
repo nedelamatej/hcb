@@ -43,13 +43,13 @@
     }
 </script>
 
-<!-- <Map
+<Map
     {distanceData}
     {containerData}
     bind:typeFilter
     bind:minDistanceFilter
     bind:maxDistanceFilter
-/> -->
+/>
 
 <div class="box">
     <div class="box-title">Třídění odpadu České Budějovice</div>

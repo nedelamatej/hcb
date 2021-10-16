@@ -58,8 +58,6 @@ html, body {
 }
 
 .box-plasty {
-  margin-top: 30px;
-
   border-left: 5px solid #EF6C00;
 }
 
@@ -290,7 +288,7 @@ transform: translate(-100%, -50%);
 
 .switch {
   display: flex;
-  margin: 16px 0;
+  margin: 38px 0px;
 }
 
 .switch__card {
@@ -307,7 +305,7 @@ transform: translate(-100%, -50%);
 
 .switch__card.active {
   border-color: black;
-  background-color: #fff;
+  background-color: #fff !important;
 }
 .switch__card:hover {
   cursor: pointer;
@@ -316,9 +314,6 @@ transform: translate(-100%, -50%);
 
 .rangeslider {
   margin: 16px 16px 0;
-}
-
-.rangeslider__label {
 }
 
 .rangeslider__values {
