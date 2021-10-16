@@ -10,5 +10,5 @@
 </svelte:head>
 
 {#if ready}
-  <Component1/>
+  <Component2/>
 {/if}
