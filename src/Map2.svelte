@@ -4,13 +4,14 @@
     export let containerData;
     export let typeFilter;
     export let minDistanceFilter;
+    export let maxDistanceFilter;
 
     let map;
-    let circles;
-    let containers;
+    let circles = [];
+    let containers= [];
 
-    $: if (minDistanceFilter) {
-        filter(typeFilter, minDistanceFilter)
+    $: filter(typeFilter, minDistanceFilter, maxDistanceFilter)
+        
         /* circlesCenter.forEach((circle) => {
         circle.setMap(null);
       });
@@ -56,22 +57,20 @@
       circlesRadius.forEach((circle) => {
         circle.setMap(map);
       }); */
-    }
 
-    function filter(type, minDistance) {
-        console.log(type, minDistance);
+    function filter(type, minDistance, maxDistance) {
         distanceData.forEach((d, id) => {
-            if (d.type == type && d.distance >= minDistance) {
-                circles[id].setMap(map);
+            if (d.type == type && d.distance >= minDistance && d.distance <= maxDistance) {
+                circles[id]?.setOptions({fillOpacity: 0.35});
             } else {
-                circles[id].setMap(null);
+                circles[id]?.setOptions({fillOpacity: 0});
             }
         });
         containerData.forEach((d, id) => {
             if (d.type == type) {
-                containers[id].setMap(map);
+                containers[id]?.setOptions({fillOpacity: 1});
             } else {
-                containers[id].setMap(null);
+                containers[id]?.setOptions({fillOpacity: 0});
             }
         });
     }
@@ -95,28 +94,32 @@
             zoomControl: true,
         });
 
-        circles = distanceData.map((d) => {
-            return new google.maps.Circle({
+        distanceData.forEach((d) => {
+            const circle = new google.maps.Circle({
                 strokeColor: "#FF0000",
                 strokeOpacity: 0.8,
                 strokeWeight: 0,
                 fillColor: getGradientColor(d.distance),
-                fillOpacity: 0.35,
+                fillOpacity: 0,
                 center: { lat: d.lat, lng: d.lng },
                 radius: Math.sqrt(d.count) * 5,
+                map
             });
+            circles.push(circle)
         });
-        containers = containerData.map((d) => {
-            return new google.maps.Circle({
+        containerData.forEach((d) => {
+            let container = new google.maps.Circle({
                 strokeWeight: 0,
                 fillColor: "blue",
-                fillOpacity: 1,
+                fillOpacity: 0,
                 center: { lat: d.lat, lng: d.lng },
                 radius: 25,
+                map
             });
+            containers.push(container)
         });
 
-        filter(typeFilter, minDistanceFilter)
+        filter(typeFilter, minDistanceFilter, maxDistanceFilter)
     });
 </script>
 

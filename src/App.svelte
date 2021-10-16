@@ -3,6 +3,7 @@
   import Component2 from './Component2.svelte';
 
   export let ready;
+  let page = "trashAccessibility"
 </script>
 
 <svelte:head>
@@ -10,5 +11,10 @@
 </svelte:head>
 
 {#if ready}
-  <Component2/>
+  {#if page == "trashOverview"}
+    <Component1 bind:page />
+  {/if}
+  {#if page == "trashAccessibility"}
+    <Component2 bind:page />
+  {/if}
 {/if}
