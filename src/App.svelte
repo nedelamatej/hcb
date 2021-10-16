@@ -1,8 +1,8 @@
 <script>
-  import Map from './Map.svelte';
-  export let ready;
+  import Component1 from './Component1.svelte';
+  import Component2 from './Component2.svelte';
 
-  let value;
+  export let ready;
 </script>
 
 <svelte:head>
@@ -10,9 +10,5 @@
 </svelte:head>
 
 {#if ready}
-  <Map bind:value={value}/>
-
-  <div class='box'>
-    <input bind:value={value}>
-  </div>
+  <Component1/>
 {/if}
