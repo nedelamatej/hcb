@@ -147,4 +147,81 @@ html, body {
 
   background: #FFFFFF !important;
   color: #9E9E9E;
+
+  font-weight: 400;
+}
+
+.box-details {
+  margin-top: calc(38px * 2);
+}
+
+.box-stanoviste {
+  position: relative;
+  
+  width: calc(350px - 40px);
+
+  padding: 10px 20px;
+
+  text-align: center;
+  font-weight: bold;
+
+  color: #FFFFFF;
+}
+
+.box-stanoviste-plasty {
+  background: #EF6C00;
+}
+
+.box-stanoviste-papir {
+  background: #1565C0;
+}
+
+.box-stanoviste-sklo-barevne {
+  background: #2E7D32;
+}
+
+.box-stanoviste-sklo-bile {
+  background: #424242;
+}
+
+.box-stanoviste-tuky-oleje {
+  background: #C62828;
+}
+
+.box-stanoviste-textil {
+  background: #4527A0;
+}
+
+.box-stanoviste-kovy {
+  background: #37474F;
+}
+
+.box-details {
+  background: #F5F5F5;
+}
+
+.box-souradnice {
+  margin-top: 5px;
+
+  text-align: center;
+
+  color: #616161;
+}
+
+.box-druh {
+  display: flex;
+  
+  justify-content: left;
+
+  margin-top: 10px;
+
+  padding: 0px 20px;
+}
+
+.box-objem-x {
+  display: flex;
+  
+  justify-content: left;
+
+  padding: 0px 20px 10px 20px;
 }

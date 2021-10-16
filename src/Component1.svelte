@@ -4,6 +4,8 @@
   let value = 'plasty';
   let details = {};
   let objem = false;
+
+  $: if (value) details = {};
 </script>
 
 <Map bind:value={value} bind:details={details} bind:objem={objem}/>
@@ -40,11 +42,19 @@
 
   {#if details.stanoviste !== undefined}
     <div class='box-details'>
-      <div class='box-stanoviste'>{details.stanoviste}</div>
-      <div class='box-x'>{details.x}</div>
-      <div class='box-y'>{details.y}</div>
-      <div class='box-druh'>{details.druh}</div>
-      <div class='box-objem-x'>{details.objemNaObyvateleNaTyden}</div>
+      <div class='box-stanoviste'
+        class:box-stanoviste-plasty="{details.druh === 'plasty'}"
+        class:box-stanoviste-papir="{details.druh === 'papír'}"
+        class:box-stanoviste-sklo-barevne="{details.druh === 'sklo barevné'}"
+        class:box-stanoviste-sklo-bile="{details.druh === 'sklo bílé'}"
+        class:box-stanoviste-tuky-oleje="{details.druh === 'tuky/oleje'}"
+        class:box-stanoviste-textil="{details.druh === 'textil'}"
+        class:box-stanoviste-kovy="{details.druh === 'kovy'}">{details.stanoviste}</div>
+      <div class='box-souradnice'>{Number(details.x.replace(',', '.')).toFixed(6)}N {Number(details.y.replace(',', '.')).toFixed(6)}E</div>
+      <div class='box-druh'>Druh odpadu: &nbsp; <b> {details.druh} </b></div>
+      {#if Number(details.objemNaObyvateleNaTyden) !== 0}
+        <div class='box-objem-x'>Objem na obyvatele: &nbsp; <b> {details.objemNaObyvateleNaTyden.toFixed(2)} </b></div>
+      {/if}
     </div>
   {/if}
 </div>

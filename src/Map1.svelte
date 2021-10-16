@@ -5,8 +5,6 @@
   export let details;
   export let objem;
 
-  $: console.log(objem);
-
   let bins = BINS.filter((bin) => bin.druh === value);
 
   let map;
@@ -15,33 +13,38 @@
   let isMounted = false;
 
   function getFillColor(bin) {
-    if (objem) {
+    if (objem && bin.druh !== 'tuky/oleje' && bin.druh !== 'textil' && bin.druh !== 'kovy') {
       let max;
 
       if (bin.druh === 'papír' || bin.druh === 'plasty') max = 20;
       else if (bin.druh === 'sklo barevné' || bin.druh === 'sklo bílé') max = 5;
 
-      let objemObyvateleNaTyden = bin.objem_na_obyvatele_na_tyden;
+      if (Number(bin.objem_na_obyvatele_na_tyden) === 0) {
+        return 'hsl(120, 100%, 75%)';
+      } else {
+        let objemObyvateleNaTyden = bin.objem_na_obyvatele_na_tyden;
 
-      if (objemObyvateleNaTyden > max) objemObyvateleNaTyden = max;
+        if (objemObyvateleNaTyden > max) objemObyvateleNaTyden = max;
 
-      const hue = objemObyvateleNaTyden / max * 120;
-      
-      return `hsl(${hue},100%,50%)`;
+        const hue = objemObyvateleNaTyden / max * 120;
+        const lightness = 50 - objemObyvateleNaTyden / max * 25;
+        
+        return `hsl(${hue}, 100%, 50%)`;
+      }
     } else {
       if (bin.druh === 'kovy') return '#9E9E9E';
       else if (bin.druh === 'papír') return '#2196F3';
       else if (bin.druh === 'plasty') return '#FF9800';
       else if (bin.druh === 'sklo barevné') return '#4CAF50';
       else if (bin.druh === 'sklo bílé') return '#000000';
-      else if (bin.druh === 'textil') return '#9C27B0';
+      else if (bin.druh === 'textil') return '#673AB7';
       else if (bin.druh === 'tuky/oleje') return '#F44336';
     }
   }
 
   function getFillOpacity(bin) {
-    if (objem) {
-      return 0.25
+    if (objem && bin.druh !== 'tuky/oleje' && bin.druh !== 'textil' && bin.druh !== 'kovy') {
+      return 0.33
     } else {
       let opacity;
       let defaultObjemObyvateleNaTyden
@@ -74,9 +77,15 @@
   $: if (value && (objem === false || objem === true) && isMounted) {
     circlesCenter.forEach((circle) => {
       circle.setMap(null);
+      circle.addListener('click', () => {
+        details = circle.details;
+      });
     });
     circlesRadius.forEach((circle) => {
       circle.setMap(null);
+      circle.addListener('click', () => {
+        details = circle.details;
+      });
     });
 
     bins = BINS.filter((bin) => bin.druh === value);
@@ -115,17 +124,27 @@
           lng: Number(bin.y.replace(',', '.')),
         },
         radius: getRadius(bin.druh),
+        details: {
+          stanoviste: bin.stanoviste,
+          x: bin.x,
+          y: bin.y,
+          druh: bin.druh,
+          objemNaObyvateleNaTyden: bin.objem_na_obyvatele_na_tyden,
+        },
       });
     });
 
     circlesCenter.forEach((circle) => {
       circle.setMap(map);
-      circle.addListener("click", () => {
+      circle.addListener('click', () => {
         details = circle.details;
       });
     });
     circlesRadius.forEach((circle) => {
       circle.setMap(map);
+      circle.addListener('click', () => {
+        details = circle.details;
+      });
     });
   }
    
