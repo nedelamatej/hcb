@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
 #map {
   height: 100%;
 }
@@ -20,5 +22,129 @@ html, body {
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 
+  font-family: 'Ubuntu';
+
   background-color: #FFFFFF;
+}
+
+.box-title {
+  margin-top: 30px;
+
+  padding-left: 75px;
+  padding-right: 75px;
+
+  font-size: 24px; 
+  text-align: center;
+  
+  color: #000000;
+}
+
+.box-team {
+  margin-top: 5px;
+
+  padding-left: 25px;
+  padding-right: 25px;
+
+  font-size: 16px;  
+  text-align: center;
+  
+  color: #616161;
+}
+
+.box-plasty, .box-papir, .box-sklo-barevne, .box-sklo-bile, .box-tuky-oleje, .box-textil, .box-kovy {
+  padding: 10px 20px;
+  
+  cursor: pointer;
+}
+
+.box-plasty {
+  margin-top: 30px;
+
+  border-left: 5px solid #EF6C00;
+}
+
+.box-papir {
+  border-left: 5px solid #1565C0;
+}
+
+.box-sklo-barevne {
+  border-left: 5px solid #2E7D32;
+}
+
+.box-sklo-bile {
+  border-left: 5px solid #424242;
+}
+
+.box-tuky-oleje {
+  border-left: 5px solid #C62828;
+}
+
+.box-textil {
+  border-left: 5px solid #4527A0;
+}
+
+.box-kovy {
+  border-left: 5px solid #37474F;
+}
+
+.selected {
+  font-weight: bold;
+
+  color: #FFFFFF;
+}
+
+.box-plasty.selected {
+  background: #EF6C00 !important;
+}
+
+.box-papir.selected {
+  background: #1565C0 !important;
+}
+
+.box-sklo-barevne.selected {
+  background: #2E7D32 !important;
+}
+
+.box-sklo-bile.selected {
+  background: #424242 !important;
+}
+
+.box-tuky-oleje.selected {
+  background: #C62828 !important;
+}
+
+.box-textil.selected {
+  background: #4527A0 !important;
+}
+
+.box-kovy.selected {
+  background: #37474F !important;
+}
+
+.box-plasty:hover, .box-papir:hover, .box-sklo-barevne:hover, .box-sklo-bile:hover,
+.box-tuky-oleje:hover, .box-textil:hover, .box-kovy:hover, .box-objem:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.box-objem {
+  margin-top: 38px;
+  
+  padding: 10px 20px;
+  
+  border-left: 5px solid #000000;
+  
+  cursor: pointer;
+}
+
+.box-objem.selected {
+  background: #000000 !important;
+}
+
+.box-objem.disabled {
+  border-left: 5px solid #9E9E9E;
+
+  cursor: not-allowed;
+
+  background: #FFFFFF !important;
+  color: #9E9E9E;
 }

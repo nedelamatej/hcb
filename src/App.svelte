@@ -6,7 +6,7 @@
 </script>
 
 <svelte:head>
-  <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCo8Q4zNi5sTwNLlr6TY3OqYC3a_kNROKA&callback=initMap&v=weekly' async></script>
+  <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCgSqhWK08M-_3baUPR4kJvl02r4TZh6ew&callback=initMap&v=weekly' async></script>
 </svelte:head>
 
 {#if ready}

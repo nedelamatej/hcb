@@ -2,51 +2,76 @@
   import { onMount } from 'svelte';
   import BINS from './bins.js';
   export let value;
+  export let details;
+  export let objem;
 
-  let bins = BINS.filter((bin) => bin.druh == 'plasty');
+  $: console.log(objem);
+
+  let bins = BINS.filter((bin) => bin.druh === value);
 
   let map;
   let circlesCenter;
   let circlesRadius;
+  let isMounted = false;
 
-  function getFillColor(type) {
-    if (type === 'kovy') return '#9E9E9E';
-    else if (type === 'papír') return '#2196F3';
-    else if (type === 'plasty') return '#FF9800';
-    else if (type === 'sklo barevné') return '#4CAF50';
-    else if (type === 'sklo bílé') return '#000000';
-    else if (type === 'textil') return '#9C27B0';
-    else if (type === 'tuky/oleje') return '#F44336';
+  function getFillColor(bin) {
+    if (objem) {
+      let max;
+
+      if (bin.druh === 'papír' || bin.druh === 'plasty') max = 20;
+      else if (bin.druh === 'sklo barevné' || bin.druh === 'sklo bílé') max = 5;
+
+      let objemObyvateleNaTyden = bin.objem_na_obyvatele_na_tyden;
+
+      if (objemObyvateleNaTyden > max) objemObyvateleNaTyden = max;
+
+      const hue = objemObyvateleNaTyden / max * 120;
+      
+      return `hsl(${hue},100%,50%)`;
+    } else {
+      if (bin.druh === 'kovy') return '#9E9E9E';
+      else if (bin.druh === 'papír') return '#2196F3';
+      else if (bin.druh === 'plasty') return '#FF9800';
+      else if (bin.druh === 'sklo barevné') return '#4CAF50';
+      else if (bin.druh === 'sklo bílé') return '#000000';
+      else if (bin.druh === 'textil') return '#9C27B0';
+      else if (bin.druh === 'tuky/oleje') return '#F44336';
+    }
   }
 
   function getFillOpacity(bin) {
-    let opacity;
-
-    if (Number(bin.objem_na_obyvatele_na_tyden) === 0) {
-      opacity = 0.25;
+    if (objem) {
+      return 0.25
     } else {
-      opacity = bin.objem_na_obyvatele_na_tyden / 20;
+      let opacity;
+      let defaultObjemObyvateleNaTyden
 
-      if (opacity > 0.75) opacity = 0.75;
-      else if (opacity < 0) opacity = 0;
+      if (bin.type === 'papír' || bin.type === 'plasty') defaultObjemObyvateleNaTyden = 20;
+      else if (bin.type === 'sklo barevné' || bin.type === 'sklo bílé') defaultObjemObyvateleNaTyden = 5;
+      else defaultObjemObyvateleNaTyden = 0;
 
-      opacity = Math.abs(opacity - 1);
+      if (Number(bin.objem_na_obyvatele_na_tyden) === 0) {
+        opacity = 0.25;
+      } else {
+        opacity = bin.objem_na_obyvatele_na_tyden / defaultObjemObyvateleNaTyden;
+
+        if (opacity > 0.75) opacity = 0.75;
+        else if (opacity < 0) opacity = 0;
+
+        opacity = Math.abs(opacity - 1);
+      } 
+
+      return opacity;
     }
-
-    return opacity;
   }
 
   function getRadius(type) {
-    if (type === 'kovy') return 400;
-    else if (type === 'papír') return 100;
-    else if (type === 'plasty') return 100;
-    else if (type === 'sklo barevné') return 200;
-    else if (type === 'sklo bílé') return 200;
-    else if (type === 'textil') return 400;
-    else if (type === 'tuky/oleje') return 400;
+    if (type === 'papír' || type === 'plasty') return 100;
+    else if (type === 'sklo barevné' || type === 'sklo bílé') return 150;
+    else return 300;
   }
 
-  $: if (value) {
+  $: if (value && (objem === false || objem === true) && isMounted) {
     circlesCenter.forEach((circle) => {
       circle.setMap(null);
     });
@@ -61,13 +86,20 @@
         strokeColor: '#FFFFFF',
         strokeOpacity: 0,
         strokeWeight: 0,
-        fillColor: getFillColor(bin.druh),
+        fillColor: getFillColor(bin),
         fillOpacity: 1,
         center: {
           lat: Number(bin.x.replace(',', '.')),
           lng: Number(bin.y.replace(',', '.')),
         },
         radius: 20,
+        details: {
+          stanoviste: bin.stanoviste,
+          x: bin.x,
+          y: bin.y,
+          druh: bin.druh,
+          objemNaObyvateleNaTyden: bin.objem_na_obyvatele_na_tyden,
+        },
       });
     });
 
@@ -76,7 +108,7 @@
         strokeColor: '#FFFFFF',
         strokeOpacity: 0,
         strokeWeight: 0,
-        fillColor: getFillColor(bin.druh),
+        fillColor: getFillColor(bin),
         fillOpacity: getFillOpacity(bin),
         center: {
           lat: Number(bin.x.replace(',', '.')),
@@ -88,6 +120,9 @@
 
     circlesCenter.forEach((circle) => {
       circle.setMap(map);
+      circle.addListener("click", () => {
+        details = circle.details;
+      });
     });
     circlesRadius.forEach((circle) => {
       circle.setMap(map);
@@ -138,6 +173,8 @@
     circlesRadius.forEach((circle) => {
       circle.setMap(map);
     });
+
+    isMounted = true;
   });
 </script>
 
