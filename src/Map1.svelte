@@ -19,10 +19,10 @@
       if (bin.druh === 'papír' || bin.druh === 'plasty') max = 20;
       else if (bin.druh === 'sklo barevné' || bin.druh === 'sklo bílé') max = 5;
 
-      if (Number(bin.objem_na_obyvatele_na_tyden) === 0) {
+      if (bin.objemObyvateleTyden === 'inf') {
         return 'hsl(120, 100%, 75%)';
       } else {
-        let objemObyvateleNaTyden = bin.objem_na_obyvatele_na_tyden;
+        let objemObyvateleNaTyden = bin.objemObyvateleTyden;
 
         if (objemObyvateleNaTyden > max) objemObyvateleNaTyden = max;
 
@@ -49,14 +49,14 @@
       let opacity;
       let defaultObjemObyvateleNaTyden
 
-      if (bin.type === 'papír' || bin.type === 'plasty') defaultObjemObyvateleNaTyden = 20;
-      else if (bin.type === 'sklo barevné' || bin.type === 'sklo bílé') defaultObjemObyvateleNaTyden = 5;
+      if (bin.druh === 'papír' || bin.druh === 'plasty') defaultObjemObyvateleNaTyden = 20;
+      else if (bin.druh === 'sklo barevné' || bin.druh === 'sklo bílé') defaultObjemObyvateleNaTyden = 5;
       else defaultObjemObyvateleNaTyden = 0;
 
-      if (Number(bin.objem_na_obyvatele_na_tyden) === 0) {
+      if (bin.objemObyvateleTyden === 'inf') {
         opacity = 0.25;
       } else {
-        opacity = bin.objem_na_obyvatele_na_tyden / defaultObjemObyvateleNaTyden;
+        opacity = bin.objemObyvateleTyden / defaultObjemObyvateleNaTyden;
 
         if (opacity > 0.75) opacity = 0.75;
         else if (opacity < 0) opacity = 0;
@@ -98,17 +98,11 @@
         fillColor: getFillColor(bin),
         fillOpacity: 1,
         center: {
-          lat: Number(bin.x.replace(',', '.')),
-          lng: Number(bin.y.replace(',', '.')),
+          lat: bin.x,
+          lng: bin.y,
         },
         radius: 20,
-        details: {
-          stanoviste: bin.stanoviste,
-          x: bin.x,
-          y: bin.y,
-          druh: bin.druh,
-          objemNaObyvateleNaTyden: bin.objem_na_obyvatele_na_tyden,
-        },
+        details: { ...bin },
       });
     });
 
@@ -120,17 +114,11 @@
         fillColor: getFillColor(bin),
         fillOpacity: getFillOpacity(bin),
         center: {
-          lat: Number(bin.x.replace(',', '.')),
-          lng: Number(bin.y.replace(',', '.')),
+          lat: bin.x,
+          lng: bin.y,
         },
         radius: getRadius(bin.druh),
-        details: {
-          stanoviste: bin.stanoviste,
-          x: bin.x,
-          y: bin.y,
-          druh: bin.druh,
-          objemNaObyvateleNaTyden: bin.objem_na_obyvatele_na_tyden,
-        },
+        details: { ...bin },
       });
     });
 
@@ -164,10 +152,11 @@
         fillColor: getFillColor(bin.druh),
         fillOpacity: 1,
         center: {
-          lat: Number(bin.x.replace(',', '.')),
-          lng: Number(bin.y.replace(',', '.')),
+          lat: bin.x,
+          lng: bin.y,
         },
         radius: 20,
+        details: { ...bin }
       });
     });
 
@@ -179,10 +168,11 @@
         fillColor: getFillColor(bin.druh),
         fillOpacity: getFillOpacity(bin),
         center: {
-          lat: Number(bin.x.replace(',', '.')),
-          lng: Number(bin.y.replace(',', '.')),
+          lat: bin.x,
+          lng: bin.y,
         },
         radius: getRadius(bin.druh),
+        details: { ...bin }
       });
     });
 

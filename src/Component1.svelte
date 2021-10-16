@@ -38,7 +38,7 @@
   <div class='box-objem' on:click={() => { objem = !objem }}
     class:selected="{objem}"
     class:disabled="{value === 'tuky/oleje' || value === 'textil' || value === 'kovy'}">
-    Zobrazit objem [l] na obyvatele</div>
+    Zobrazit objem na obyvatele (l)</div>
 
   {#if details.stanoviste !== undefined}
     <div class='box-details'>
@@ -50,10 +50,19 @@
         class:box-stanoviste-tuky-oleje="{details.druh === 'tuky/oleje'}"
         class:box-stanoviste-textil="{details.druh === 'textil'}"
         class:box-stanoviste-kovy="{details.druh === 'kovy'}">{details.stanoviste}</div>
-      <div class='box-souradnice'>{Number(details.x.replace(',', '.')).toFixed(6)}N {Number(details.y.replace(',', '.')).toFixed(6)}E</div>
-      <div class='box-druh'>Druh odpadu: &nbsp; <b> {details.druh} </b></div>
-      {#if Number(details.objemNaObyvateleNaTyden) !== 0}
-        <div class='box-objem-x'>Objem na obyvatele: &nbsp; <b> {details.objemNaObyvateleNaTyden.toFixed(2)} </b></div>
+      <div class='box-souradnice'>{details.x.toFixed(6)}N {details.y.toFixed(6)}E</div>
+      <div class='box-druh'>Druh:&nbsp;<b>{details.druh} </b></div>
+      <div class='box-pocet'>Počet (ks):&nbsp;<b>{details.pocet} </b></div>
+      <div class='box-objem-kontejneru'>Objem (l):&nbsp;<b>{details.objem} </b></div>
+      <div class='box-typ'>Typ:&nbsp;<b>{details.typ} </b></div>
+      {#if details.cetnost !== 'neurčeno'}
+        <div class='box-objem-cetnost'>Svoz:&nbsp;<b>{details.cetnost}</b> ({details.den})</div>
+      {/if}
+      {#if Number(details.obyvatel) !== 0}
+        <div class='box-obyvatel'>Obyvatel:&nbsp;<b>{details.obyvatel} </b></div>
+      {/if}
+      {#if details.objemObyvateleTyden !== 'inf'}
+      <div class='box-objem-obyvatele-tyden'>Objem na obyvatele (l):&nbsp;<b>{details.objemObyvateleTyden.toFixed(2)} </b></div>
       {/if}
     </div>
   {/if}
