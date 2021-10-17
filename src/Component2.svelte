@@ -56,7 +56,7 @@
 
 <div class="box">
     <div class="box-title">Třídění odpadu České Budějovice</div>
-    <div class="box-team">BROS | BRno OStrava</div>
+    <div class='box-team'>Jihočeský hackaton 2021</div>
     <div
         class="box-objem selected"
         on:click={() => {
@@ -67,6 +67,7 @@
     </div>
     <div
         class="box-objem"
+        style="margin: 0px 0px 38px 0px;"
         on:click={() => {
             page = "trashOverview";
         }}
@@ -144,15 +145,6 @@
         Kovy
     </div>
 
-    <!-- <input type="range" max={maxDistance} bind:value={minDistanceFilter} /> -->
-    <div class="rangeslider">
-        <div>Filtr vzdálenosti odpadu</div>
-        <DoubleRangeSlider bind:start bind:lazyStart bind:end bind:lazyEnd />
-        <div class="rangeslider__values">
-            <div>{minDistanceDisplay} m</div>
-            <div>{maxDistanceDisplay} m</div>
-        </div>
-    </div>
     <div
         class="box-objem"
         on:click={() => {
@@ -164,5 +156,15 @@
             typeFilter === "kovy"}
     >
         Zobrazit kontejnery
+    </div>
+
+    <!-- <input type="range" max={maxDistance} bind:value={minDistanceFilter} /> -->
+    <div class="rangeslider">
+      <div>Filtr vzdálenosti odpadu</div>
+      <DoubleRangeSlider bind:start bind:lazyStart bind:end bind:lazyEnd />
+      <div class="rangeslider__values">
+          <div>{minDistanceDisplay} m</div>
+          <div>{maxDistanceDisplay} m</div>
+      </div>
     </div>
 </div>
