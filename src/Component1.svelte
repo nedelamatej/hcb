@@ -74,7 +74,7 @@
       <div class='box-souradnice'>{details.x.toFixed(6)}N {details.y.toFixed(6)}E</div>
       <div class='box-druh'>Druh:&nbsp;<b>{details.druh} </b></div>
       <div class='box-pocet'>Počet (ks):&nbsp;<b>{details.pocet} </b></div>
-      <div class='box-objem-kontejneru'>Objem (l):&nbsp;<b>{details.objem} </b></div>
+      <div class='box-objem-kontejneru'>Objem celkem (l):&nbsp;<b>{details.objem} </b></div>
       <div class='box-typ'>Typ:&nbsp;<b>{details.typ} </b></div>
       {#if details.cetnost !== 'neurčeno'}
         <div class='box-objem-cetnost'>Svoz:&nbsp;<b>{details.cetnost}</b> ({details.den})</div>
