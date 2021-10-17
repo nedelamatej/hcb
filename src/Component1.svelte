@@ -25,7 +25,7 @@
           page = "trashAccessibility";
       }}
   >
-      Dostupnost odpadů
+      Obyvatelé
   </div>
   <div
     class="box-objem"
@@ -43,7 +43,7 @@
           page = "trashOverview";
       }}
   >
-      Přehled odpadů
+      Kontejnery
   </div>
 
   <div class='component-box-title'><i>Typ odpadu:</i></div>  

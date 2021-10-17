@@ -81,13 +81,13 @@
         class="box-objem"
         style="margin: 0px"
         on:click={() => {
-            page = "trasOverview";
+            page = "trashOverview";
         }}
     >
         Kontejnery
     </div>
 
-    <div class='component-box-title'><i>Typu odpadu:</i></div>
+    <div class='component-box-title'><i>Typ odpadu:</i></div>
     <div
         class="box-plasty"
         on:click={() => {
