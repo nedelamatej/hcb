@@ -14,11 +14,15 @@
   let isMounted = false;
 
   function getFillColor(bin) {
-    if (objem && bin.druh !== 'tuky/oleje' && bin.druh !== 'textil' && bin.druh !== 'kovy') {
+    if (objem) {
       let max;
 
       if (bin.druh === 'papír' || bin.druh === 'plasty') max = 20;
-      else if (bin.druh === 'sklo barevné' || bin.druh === 'sklo bílé') max = 5;
+      else if (bin.druh === 'sklo barevné') max = 2.5;
+      else if (bin.druh === 'sklo bílé') max = 1;
+      else if (bin.druh === 'tuky/oleje') max = 0.25;
+      else if (bin.druh === 'textil') max = 1.5;
+      else if (bin.druh === 'kovy') max = 1;
 
       if (bin.objemObyvateleTyden === 'inf') {
         return 'hsl(120, 100%, 75%)';
@@ -43,26 +47,31 @@
   }
 
   function getFillOpacity(bin) {
-    if (objem && bin.druh !== 'tuky/oleje' && bin.druh !== 'textil' && bin.druh !== 'kovy') {
+    if (objem) {
       return 0.33
     } else {
       let opacity;
       let defaultObjemObyvateleNaTyden
 
       if (bin.druh === 'papír' || bin.druh === 'plasty') defaultObjemObyvateleNaTyden = 20;
-      else if (bin.druh === 'sklo barevné') defaultObjemObyvateleNaTyden = 5;
-      else if (bin.druh === 'sklo bílé') defaultObjemObyvateleNaTyden = 0.5;
-      else defaultObjemObyvateleNaTyden = 0;
+      else if (bin.druh === 'sklo barevné') defaultObjemObyvateleNaTyden = 2.5;
+      else if (bin.druh === 'sklo bílé') defaultObjemObyvateleNaTyden = 1;
+      else if (bin.druh === 'tuky/oleje') defaultObjemObyvateleNaTyden = 0.25;
+      else if (bin.druh === 'textil') defaultObjemObyvateleNaTyden = 1.5;
+      else if (bin.druh === 'kovy') defaultObjemObyvateleNaTyden = 1;
 
       if (bin.objemObyvateleTyden === 'inf') {
         opacity = 0.25;
       } else {
         opacity = bin.objemObyvateleTyden / defaultObjemObyvateleNaTyden;
 
-        if (opacity > 0.75) opacity = 0.75;
-        else if (opacity < 0) opacity = 0;
+        if (opacity > 0.9) opacity = 0.9;
+        else if (opacity < 0.1) opacity = 0.1;
 
-        opacity = Math.abs(opacity - 1);
+        // if (opacity > 0.75) opacity = 0.75;
+        // else if (opacity < 0) opacity = 0;
+
+        // opacity = Math.abs(opacity - 1);
       } 
 
       return opacity;
@@ -72,7 +81,8 @@
   function getRadius(type) {
     if (type === 'papír' || type === 'plasty') return 100;
     else if (type === 'sklo barevné') return 150;
-    else return 300;
+    else if (type === 'sklo bílé' || type === 'tuky/oleje' || type === 'textil') return 300;
+    else if (type === 'kovy') return 600;
   }
 
   $: if (value && (objem === false || objem === true) && isMounted) {

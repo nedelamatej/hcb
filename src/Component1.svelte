@@ -5,7 +5,7 @@
 
   let value = 'plasty';
   let details = {};
-  let objem = false;
+  let objem = true;
 
   $: if (value) details = {};
 </script>
@@ -57,9 +57,7 @@
     class:selected="{value === 'kovy'}">Kovy</div>
 
   <div class='box-objem' on:click={() => { objem = !objem }}
-    class:selected="{objem}"
-    class:disabled="{value === 'tuky/oleje' || value === 'textil' || value === 'kovy'}">
-    Zobrazit objem na obyvatele (l)</div>
+    class:selected="{objem}">Zobrazit objem na obyvatele (l)</div>
 
   {#if details.stanoviste !== undefined}
     <div class='box-details'>
