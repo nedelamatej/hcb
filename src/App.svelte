@@ -19,11 +19,9 @@
 {#if ready}
   {#if page == "trashOverview"}
     <Component1 bind:page />
-  {/if}
-  {#if page == "trashAccessibility"}
+  {:else if page == "trashAccessibility"}
     <Component2 bind:page {distanceData} {containerData} />
-  {/if}
-  {#if page == "trashPoints"}
+  {:else if page == 'trashPoints'}
     <Component3 bind:page distanceData={addressData} {containerData} />
   {/if}
 {/if}
