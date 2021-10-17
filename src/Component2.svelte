@@ -14,23 +14,21 @@
     let lazyEnd = 1;
 
     let distanceArray = distanceData.reduce((a, c) => {
-        if (a.hasOwnProperty(c.type)) {
-            return {
-                ...a,
-                [c.type]: Math.max(c.distance, a[c.type]),
-            };
-        } else {
-            return {
-                ...a,
-                [c.type]: c.distance,
-            };
+        return {
+            "dist_kovy": Math.max(a["dist_kovy"], c["dist_kovy"]),
+            "dist_papír": Math.max(a["dist_papír"], c["dist_papír"]),
+            "dist_plasty": Math.max(a["dist_plasty"], c["dist_plasty"]),
+            "dist_sklo barevné": Math.max(a["dist_sklo barevné"], c["dist_sklo barevné"]),
+            "dist_sklo bílé": Math.max(a["dist_sklo bílé"], c["dist_sklo bílé"]),
+            "dist_textil": Math.max(a["dist_textil"], c["dist_textil"]),
+            "dist_tuky/oleje": Math.max(a["dist_tuky/oleje"], c["dist_tuky/oleje"]),
         }
-    }, {});
+    });
     console.log(distanceArray);
     /* .filter(({ type }) => type == typeFilter)
     .map(({ distance }) => distance); */
 
-    $: maxDistance = distanceArray[typeFilter];
+    $: maxDistance = distanceArray[`dist_${typeFilter}`];
     console.log(lazyStart);
 
     const step = 10;

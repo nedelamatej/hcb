@@ -62,15 +62,11 @@
     function filter(type, minDistance, maxDistance, showTrashcans) {
         if (circles.length == 0 && containers.length == 0) return
         distanceData.forEach((d, id) => {
-            if (d.type == type && d.distance >= minDistance && d.distance <= maxDistance) {
-                /* if(circles[id]?.getMap() === null) {
-                    console.log("not rendered");
-                    circles[id]?.setMap(map)
-                } */
-                    circles[id]?.setOptions({fillOpacity: 0.35/* visible: true */});
-            } else {
-                    circles[id]?.setOptions({fillOpacity: 0/* visible: false */});
+            let fill = 0
+            if (d[`dist_${type}`] > minDistance && d[`dist_${type}`] < maxDistance) {
+                fill = 0.5
             }
+            circles[id]?.setOptions({fillColor: getGradientColor(d[`dist_${type}`]), fillOpacity: fill});
         });
         containerData.forEach((d, id) => {
             if (d.type == type && showTrashcans) {
@@ -105,11 +101,11 @@
                 strokeColor: "#FF0000",
                 strokeOpacity: 0.8,
                 strokeWeight: 0,
-                fillColor: getGradientColor(d.distance),
-                fillOpacity:  0,
+                fillColor: getGradientColor(d[`dist_${typeFilter}`]),
+                fillOpacity:  0.35,
                 center: { lat: d.lat, lng: d.lng },
                 radius: Math.sqrt(d.count) * 5,
-                map/* : (d.type == typeFilter && d.distance >= minDistanceFilter && d.distance <= maxDistanceFilter) ? map : null */
+                map
             });
             circles.push(circle)
         });

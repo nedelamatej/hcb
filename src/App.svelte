@@ -2,7 +2,7 @@
   import Component1 from "./Component1.svelte";
   import Component2 from "./Component2.svelte";
   import Component3 from "./Component3.svelte";
-  import distanceData from "./walking-distance-data.js";
+  import distanceData from "./walking-distance-data-1.js";
   import containerData from "./kontejnery.js";
   import addressData from "./adresy-squashed.js";
 
