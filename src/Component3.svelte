@@ -79,7 +79,7 @@
           class="box-objem"
           style="margin: 0px"
           on:click={() => {
-              page = "trasOverview";
+              page = "trashOverview";
           }}
       >
           Kontejnery
