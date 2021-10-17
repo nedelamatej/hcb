@@ -16,8 +16,10 @@
   <div class='box-title'>Třídění odpadu České Budějovice</div>
   <div class='box-team'>Jihočeský hackaton 2021</div>
 
+  <div class='component-box-title'><i>Výběr zobrazení:</i></div>
   <div
       class="box-objem"
+      style="margin: 0px"
       on:click={() => {
           page = "trashAccessibility";
       }}
@@ -26,14 +28,15 @@
   </div>
   <div
       class="box-objem selected"
-      style="margin: 0px 0px 38px 0px;"
+      style="margin: 0px"
       on:click={() => {
           page = "trashOverview";
       }}
   >
       Přehled odpadů
   </div>
-  
+
+  <div class='component-box-title'><i>Výběr typu kontejnerů:</i></div>  
   <div class='box-plasty' on:click={() => { value = 'plasty' }}
     class:selected="{value === 'plasty'}">Plasty</div>
 
