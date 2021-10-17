@@ -1,12 +1,13 @@
 <script>
     import Map from "./Map2.svelte";
     import DoubleRangeSlider from "./DoubleRangeSlider.svelte";
-    import distanceData from "./distance-data.js";
-    import containerData from "./kontejnery.js";
 
-    export let page
+    export let page;
+    export let distanceData;
+    export let containerData;
 
     let typeFilter = "plasty";
+    let showTrashcans = true
     let start = 0;
     let lazyStart = 0;
     let end = 1;
@@ -25,6 +26,7 @@
             };
         }
     }, {});
+    console.log(distanceArray);
     /* .filter(({ type }) => type == typeFilter)
     .map(({ distance }) => distance); */
 
@@ -49,6 +51,7 @@
     bind:typeFilter
     bind:minDistanceFilter
     bind:maxDistanceFilter
+    bind:showTrashcans
 />
 
 <div class="box">
@@ -152,5 +155,17 @@
             <div>{minDistanceDisplay} m</div>
             <div>{maxDistanceDisplay} m</div>
         </div>
+    </div>
+    <div
+        class="box-objem"
+        on:click={() => {
+            showTrashcans = !showTrashcans;
+        }}
+        class:selected={showTrashcans}
+        class:disabled={typeFilter === "tuky/oleje" ||
+            typeFilter === "textil" ||
+            typeFilter === "kovy"}
+    >
+        Zobrazit kontejnery
     </div>
 </div>
