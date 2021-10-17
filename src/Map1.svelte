@@ -1,6 +1,7 @@
 <script>   
   import { onMount } from 'svelte';
-  import BINS from './bins.js';
+  // import BINS from './bins.js';
+  import BINS from './bins-new.js';
   export let value;
   export let details;
   export let objem;
@@ -27,7 +28,6 @@
         if (objemObyvateleNaTyden > max) objemObyvateleNaTyden = max;
 
         const hue = objemObyvateleNaTyden / max * 120;
-        const lightness = 50 - objemObyvateleNaTyden / max * 25;
         
         return `hsl(${hue}, 100%, 50%)`;
       }
@@ -50,7 +50,8 @@
       let defaultObjemObyvateleNaTyden
 
       if (bin.druh === 'papír' || bin.druh === 'plasty') defaultObjemObyvateleNaTyden = 20;
-      else if (bin.druh === 'sklo barevné' || bin.druh === 'sklo bílé') defaultObjemObyvateleNaTyden = 5;
+      else if (bin.druh === 'sklo barevné') defaultObjemObyvateleNaTyden = 5;
+      else if (bin.druh === 'sklo bílé') defaultObjemObyvateleNaTyden = 0.5;
       else defaultObjemObyvateleNaTyden = 0;
 
       if (bin.objemObyvateleTyden === 'inf') {
@@ -70,7 +71,7 @@
 
   function getRadius(type) {
     if (type === 'papír' || type === 'plasty') return 100;
-    else if (type === 'sklo barevné' || type === 'sklo bílé') return 150;
+    else if (type === 'sklo barevné') return 150;
     else return 300;
   }
 
