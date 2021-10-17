@@ -1,8 +1,10 @@
 <script>
   import Component1 from "./Component1.svelte";
   import Component2 from "./Component2.svelte";
-  import distanceData from "./distance-data.js";
+  import Component3 from "./Component3.svelte";
+  import distanceData from "./walking-distance-data.js";
   import containerData from "./kontejnery.js";
+  import addressData from "./adresy-squashed.js";
 
   export let ready;
   let page = "trashAccessibility";
@@ -20,5 +22,8 @@
   {/if}
   {#if page == "trashAccessibility"}
     <Component2 bind:page {distanceData} {containerData} />
+  {/if}
+  {#if page == "trashPoints"}
+    <Component3 bind:page distanceData={addressData} {containerData} />
   {/if}
 {/if}
