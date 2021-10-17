@@ -55,9 +55,10 @@
 />
 
 <div class="box">
+  <div class='box-2'>
     <div class="box-title">Třídění odpadu České Budějovice</div>
     <div class='box-team'>Jihočeský hackaton 2021</div>
-    <div class='component-box-title'><i>Výběr zobrazení:</i></div>
+    <div class='component-box-title'><i>Zobrazení:</i></div>
     <div
         class="box-objem selected"
         style="margin: 0px"
@@ -65,19 +66,28 @@
             page = "trashAccessibility";
         }}
     >
-        Dostupnost odpadů
+        Obyvatelé
     </div>
     <div
         class="box-objem"
         style="margin: 0px"
         on:click={() => {
-            page = "trashOverview";
+            page = "trashPoints";
         }}
     >
-        Přehled odpadů
+        Adresní body
+    </div>
+    <div
+        class="box-objem"
+        style="margin: 0px"
+        on:click={() => {
+            page = "trasOverview";
+        }}
+    >
+        Kontejnery
     </div>
 
-    <div class='component-box-title'><i>Výběr typu kontejnerů:</i></div>
+    <div class='component-box-title'><i>Typu odpadu:</i></div>
     <div
         class="box-plasty"
         on:click={() => {
@@ -125,7 +135,7 @@
         }}
         class:selected={typeFilter === "tuky/oleje"}
     >
-        Tuky / oleje
+        Tuky/oleje
     </div>
 
     <div
@@ -159,7 +169,7 @@
     </div>
 
     <!-- <input type="range" max={maxDistance} bind:value={minDistanceFilter} /> -->
-    <div class="rangeslider">
+    <div class="rangeslider" style="margin-bottom: 38px">
       <div><i><b>Filtr vzdálenosti odpadu:</b></i></div>
       <DoubleRangeSlider bind:start bind:lazyStart bind:end bind:lazyEnd />
       <div class="rangeslider__values">
@@ -167,4 +177,5 @@
           <div>{maxDistanceDisplay} m</div>
       </div>
     </div>
+</div>
 </div>

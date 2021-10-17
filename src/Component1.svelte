@@ -13,10 +13,11 @@
 <Map bind:value={value} bind:details={details} bind:objem={objem}/>
 
 <div class='box'>
+<div class='box2'>
   <div class='box-title'>Třídění odpadu České Budějovice</div>
   <div class='box-team'>Jihočeský hackaton 2021</div>
 
-  <div class='component-box-title'><i>Výběr zobrazení:</i></div>
+  <div class='component-box-title'><i>Zobrazení:</i></div>
   <div
       class="box-objem"
       style="margin: 0px"
@@ -25,6 +26,15 @@
       }}
   >
       Dostupnost odpadů
+  </div>
+  <div
+    class="box-objem"
+    style="margin: 0px"
+    on:click={() => {
+        page = "trashPoints";
+    }}
+  >
+    Adresní body
   </div>
   <div
       class="box-objem selected"
@@ -36,7 +46,7 @@
       Přehled odpadů
   </div>
 
-  <div class='component-box-title'><i>Výběr typu kontejnerů:</i></div>  
+  <div class='component-box-title'><i>Typ odpadu:</i></div>  
   <div class='box-plasty' on:click={() => { value = 'plasty' }}
     class:selected="{value === 'plasty'}">Plasty</div>
 
@@ -50,7 +60,7 @@
     class:selected="{value === 'sklo bílé'}">Bílé sklo</div>
 
   <div class='box-tuky-oleje' on:click={() => { value = 'tuky/oleje' }}
-    class:selected="{value === 'tuky/oleje'}">Tuky / oleje</div>
+    class:selected="{value === 'tuky/oleje'}">Tuky/oleje</div>
 
   <div class='box-textil' on:click={() => { value = 'textil' }}
     class:selected="{value === 'textil'}">Textil</div>
@@ -87,4 +97,5 @@
       {/if}
     </div>
   {/if}
+</div>
 </div>
