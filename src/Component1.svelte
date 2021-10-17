@@ -13,7 +13,7 @@
 <Map bind:value={value} bind:details={details} bind:objem={objem}/>
 
 <div class='box'>
-<div class='box2'>
+<div class='box-2'>
   <div class='box-title'>Třídění odpadu České Budějovice</div>
   <div class='box-team'>Jihočeský hackaton 2021</div>
 
@@ -68,11 +68,11 @@
   <div class='box-kovy' on:click={() => { value = 'kovy' }}
     class:selected="{value === 'kovy'}">Kovy</div>
 
-  <div class='box-objem' on:click={() => { objem = !objem }}
+  <div class='box-objem' style="margin-bottom: 38px;" on:click={() => { objem = !objem }}
     class:selected="{objem}">Zobrazit objem na obyvatele (l)</div>
 
   {#if details.stanoviste !== undefined}
-    <div class='box-details'>
+    <div class='box-details' style="margin-bottom: 38px; margin-top: 0px;">
       <div class='box-stanoviste'
         class:box-stanoviste-plasty="{details.druh === 'plasty'}"
         class:box-stanoviste-papir="{details.druh === 'papír'}"
