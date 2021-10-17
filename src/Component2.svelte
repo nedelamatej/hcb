@@ -45,36 +45,33 @@
     }
 </script>
 
-<Map
+<!-- <Map
     {distanceData}
     {containerData}
     bind:typeFilter
     bind:minDistanceFilter
     bind:maxDistanceFilter
     bind:showTrashcans
-/>
+/> -->
 
 <div class="box">
     <div class="box-title">Třídění odpadu České Budějovice</div>
     <div class="box-team">BROS | BRno OStrava</div>
-
-    <div class="switch">
-        <div
-            class="switch__card active"
-            on:click={() => {
-                page = "trashAccessibility";
-            }}
-        >
-            Dostupnost odpadů
-        </div>
-        <div
-            class="switch__card"
-            on:click={() => {
-                page = "trashOverview";
-            }}
-        >
-            Přehled odpadů
-        </div>
+    <div
+        class="box-objem selected"
+        on:click={() => {
+            page = "trashAccessibility";
+        }}
+    >
+        Dostupnost odpadů
+    </div>
+    <div
+        class="box-objem"
+        on:click={() => {
+            page = "trashOverview";
+        }}
+    >
+        Přehled odpadů
     </div>
 
     <div
