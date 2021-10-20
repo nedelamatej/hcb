@@ -25,7 +25,7 @@
           page = "trashAccessibility";
       }}
   >
-      Obyvatelé
+      Obyvatelé (docházková vzdálenost)
   </div>
   <div
     class="box-objem"
@@ -34,7 +34,7 @@
         page = "trashPoints";
     }}
   >
-    Adresní body
+    Adresní body (vzdušná vzdálenost)
   </div>
   <div
       class="box-objem selected"
@@ -43,10 +43,10 @@
           page = "trashOverview";
       }}
   >
-      Kontejnery
+      Kontejnery (vzdušná vzdálenost)
   </div>
 
-  <div class='component-box-title'><i>Typ odpadu:</i></div>  
+  <div class='component-box-title'><i>Typ odpadu:</i></div>
   <div class='box-plasty' on:click={() => { value = 'plasty' }}
     class:selected="{value === 'plasty'}">Plasty</div>
 

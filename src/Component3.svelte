@@ -64,7 +64,7 @@
               page = "trashAccessibility";
           }}
       >
-          Obyvatelé
+          Obyvatelé (docházková vzdálenost)
       </div>
       <div
           class="box-objem  selected"
@@ -73,7 +73,7 @@
               page = "trashPoints";
           }}
       >
-          Adresní body
+          Adresní body (vzdušná vzdálenost)
       </div>
       <div
           class="box-objem"
@@ -82,10 +82,10 @@
               page = "trashOverview";
           }}
       >
-          Kontejnery
+          Kontejnery (vzdušná vzdálenost)
       </div>
-  
-      <div class='component-box-title'><i>Typu odpadu:</i></div>
+
+      <div class='component-box-title'><i>Typ odpadu:</i></div>
       <div
           class="box-plasty"
           on:click={() => {
@@ -95,7 +95,7 @@
       >
           Plasty
       </div>
-  
+
       <div
           class="box-papir"
           on:click={() => {
@@ -105,7 +105,7 @@
       >
           Papír
       </div>
-  
+
       <div
           class="box-sklo-barevne"
           on:click={() => {
@@ -115,7 +115,7 @@
       >
           Barevné sklo
       </div>
-  
+
       <div
           class="box-sklo-bile"
           on:click={() => {
@@ -125,7 +125,7 @@
       >
           Bílé sklo
       </div>
-  
+
       <div
           class="box-tuky-oleje"
           on:click={() => {
@@ -135,7 +135,7 @@
       >
           Tuky/oleje
       </div>
-  
+
       <div
           class="box-textil"
           on:click={() => {
@@ -145,7 +145,7 @@
       >
           Textil
       </div>
-  
+
       <div
           class="box-kovy"
           on:click={() => {
@@ -155,7 +155,7 @@
       >
           Kovy
       </div>
-  
+
       <div
           class="box-objem"
           on:click={() => {
@@ -165,7 +165,7 @@
       >
           Zobrazit kontejnery
       </div>
-  
+
       <!-- <input type="range" max={maxDistance} bind:value={minDistanceFilter} /> -->
       <div class="rangeslider" style="margin-bottom: 38px">
         <div><i><b>Filtr vzdálenosti odpadu:</b></i></div>
